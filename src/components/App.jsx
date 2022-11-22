@@ -1,16 +1,16 @@
+
+import Counter from "./statisticsFeedback/Counter";
+
+
+// export const App = () => {
+//   return (
+//     <Statistics good={} neutral={} bad={} total={} positivePercentage={}/>
+//   );
+// };
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <Counter />
   );
 };
+
