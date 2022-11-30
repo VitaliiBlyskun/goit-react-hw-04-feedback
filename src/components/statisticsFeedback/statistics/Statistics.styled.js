@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 export const CategoryList = styled.span`
   font-size: 30px;
-  font-weight: bold;
+  font-weight: ${props => props.theme.fontWeights.bold};
   padding-left: 30px;
-  color: white;
+  color: ${props => props.theme.colors.white};
 `;
 
 export const StatisticsList = styled.ul`
-  background-color: black;
+  background-color: ${props => props.theme.colors.black};
   border-radius: 15px;
 `;

@@ -2,17 +2,17 @@ import styled from 'styled-components';
 
 export const Button = styled.button`
 padding: 10px 20px;
-background-color: black;
-color: white;
+background-color: ${props => props.theme.colors.black};
+color:  ${props => props.theme.colors.white};
 border-radius: 10%;
 font-size: 20px;
-font-weight: bold;
+font-weight: ${props => props.theme.fontWeights.bold};
 cursor: pointer;
 
 :hover,
 :focus {
-    background-color: white;
-    color: black;
+    background-color: ${props => props.theme.colors.white};
+    color: ${props => props.theme.colors.black};
 }
 `;
 
