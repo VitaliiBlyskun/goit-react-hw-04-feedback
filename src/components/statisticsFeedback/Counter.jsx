@@ -36,10 +36,6 @@ export default function Counter() {
     return Math.round((good / countTotalFeedback()) * 100);
   };
 
-  useEffect(() => {
-    console.log("Запускаємо useEffect");
-  }, [neutral])
-
   return (
     <>
       <MainWrapper>
