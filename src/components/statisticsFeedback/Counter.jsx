@@ -1,62 +1,70 @@
-import React from 'react';
-import FeedbackOptions from './feedbackOptions/FeedbackOptions';
+import { useState } from 'react';
+import {
+  ButtonBad,
+  ButtonGood,
+  ButtonNeutral,
+} from './feedbackOptions/FeedbackOptions';
 import Section from './section/Sections';
 import Statistics from './statistics/Statistics';
 import { MainWrapper } from 'components/Base.styled';
 import Notification from './message/Message';
 import { WrapperBtn } from './feedbackOptions/feedbackOptions.styled';
+import { useEffect } from 'react';
 
-class Counter extends React.Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
+export default function Counter() {
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+
+  const handleCounterGood = () => {
+    setGood(prevState => prevState + 1);
   };
 
-  leaveFeedback = propertyName => {
-    this.setState(prevState => {
-      return {
-        [propertyName]: prevState[propertyName] + 1,
-      };
-    });
+  const handleCounterNeutral = () => {
+    setNeutral(prevState => prevState + 1);
   };
 
-  countTotalFeedback = () => {
-    return this.state.good + this.state.neutral + this.state.bad;
+  const handleCounterBad = () => {
+    setBad(prevState => prevState + 1);
   };
 
-  countPositiveFeedbackPercentage = () => {
-    return Math.round((this.state.good / this.countTotalFeedback()) * 100);
+  const countTotalFeedback = () => {
+    return good + neutral + bad;
   };
 
-  render() {
-    return (
+  const countPositiveFeedbackPercentage = () => {
+    return Math.round((good / countTotalFeedback()) * 100);
+  };
+
+  useEffect(() => {
+    console.log("Запускаємо useEffect");
+  }, [neutral])
+
+  return (
+    <>
       <MainWrapper>
         <Section title="Please leave feedback">
           <WrapperBtn>
-            <FeedbackOptions
-              options={this.state}
-              onLeaveFeedback={this.leaveFeedback}
-            />
+            <ButtonGood onHandleCounterGood={handleCounterGood} />
+            <ButtonNeutral onHandleCounterNeutral={handleCounterNeutral} />
+            <ButtonBad onHandleCounterBad={handleCounterBad} />
           </WrapperBtn>
         </Section>
 
         <Section title="Statistics">
-          {this.countTotalFeedback() === 0 ? (
+          {countTotalFeedback() === 0 ? (
             <Notification message="There is no feedback" />
           ) : (
             <Statistics
-              good={this.state.good}
-              neutral={this.state.neutral}
-              bad={this.state.bad}
-              total={this.countTotalFeedback()}
-              positivePercentage={this.countPositiveFeedbackPercentage()}
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={countTotalFeedback()}
+              positivePercentage={countPositiveFeedbackPercentage()}
             />
           )}
         </Section>
       </MainWrapper>
-    );
-  }
+    </>
+  );
 }
-
-export default Counter;
