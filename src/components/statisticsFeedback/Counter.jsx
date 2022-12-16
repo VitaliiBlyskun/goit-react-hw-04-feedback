@@ -9,7 +9,6 @@ import Statistics from './statistics/Statistics';
 import { MainWrapper } from 'components/Base.styled';
 import Notification from './message/Message';
 import { WrapperBtn } from './feedbackOptions/feedbackOptions.styled';
-import { useEffect } from 'react';
 
 export default function Counter() {
   const [good, setGood] = useState(0);
